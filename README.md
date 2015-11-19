@@ -1,2 +1,2 @@
 # eecs4331
-eecs4331project
+eecs-4331 final project
