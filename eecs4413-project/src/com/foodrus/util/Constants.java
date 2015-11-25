@@ -42,14 +42,15 @@ public class Constants {
 		public static final String ADD_ITEM = "/additem";
 		public static final String REMOVE_ITEM = "/removeitem";
 		public static final String CHECK_OUT = "/checkout";
-		public static final Map<String, Controller> RESOURCE_MAP = Collections.unmodifiableMap(new HashMap<>());
+		private static final Map<String, Controller> res_map = new HashMap<>();
 		static{
-			RESOURCE_MAP.put(LOGIN, new LoginController());
-			RESOURCE_MAP.put(HOME, new HomeController());
-			RESOURCE_MAP.put(ADD_ITEM, new AddItemController());
-			RESOURCE_MAP.put(REMOVE_ITEM, new RemoveItemController());
-			RESOURCE_MAP.put(CHECK_OUT, new CheckOutController());
+			res_map.put(LOGIN, new LoginController());
+			res_map.put(HOME, new HomeController());
+			res_map.put(ADD_ITEM, new AddItemController());
+			res_map.put(REMOVE_ITEM, new RemoveItemController());
+			res_map.put(CHECK_OUT, new CheckOutController());
 		}
+		public static final Map<String, Controller> RESOURCE_MAP = Collections.unmodifiableMap(res_map);
 	}
 	
 	// *** HTTP methods names
