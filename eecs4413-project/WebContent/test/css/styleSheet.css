@@ -1,0 +1,87 @@
+body{
+	color: #44727F;
+}
+ 
+.wrapper {
+	margin: 0 auto;
+	width: 800px;
+	height: 600px;
+}
+
+.container {
+   margin: auto;
+   border: 1px solid;
+} .block {
+   display: inline-block;
+} .center {
+	/* padding-right: 1em;
+	padding-left: 5em; */
+	margin: 0 auto;
+	width: 50px;
+} .left {
+	/* padding-top: 1.5em;
+	padding-left: .5em;
+	padding-right: 3em;
+    float: left; */
+    width: 200px;
+    margin: auto 0  auto  auto  ;
+    
+} .right {
+	/* padding-top: 1.2em;
+	padding-right: .5em;
+	padding-left: 1em;
+    float: right; */
+    width: 200px;
+    margin: auto auto auto 0;
+}
+
+.header {
+	position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+	height: 50px;
+    text-align: center;
+    color: white;
+}
+
+.footer {
+}
+
+.border {
+	border: 2px;
+	border-style: outset;
+}
+
+.elipse{
+	border-radius: 5px;
+}
+
+.button{
+	color: #44727F;	
+	height: 100%;
+	width: 100%;
+	border: 0;
+	cursor: pointer;
+}
+.loginCart{
+	width: 65px;
+	height: 25px;
+	
+}
+.spacer{
+	height: 25px;
+}
+
+/* color palette */
+.babyBlue{
+	background: #D4EAEB;
+} .indifferent{
+	background: #46575E;
+} .bloodyKnuckle{
+	background: #A62A32;
+} .seaBlue{
+	background: #90D5DA;
+} .greenHue{
+	background: #C7D645;
+}
