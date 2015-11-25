@@ -1,4 +1,4 @@
-package com.foodforus.bean;
+package com.foodrus.bean;
 
 import java.util.List;
 

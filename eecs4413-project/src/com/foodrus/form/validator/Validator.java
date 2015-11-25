@@ -1,8 +1,8 @@
-package com.foodforus.form.validator;
+package com.foodrus.form.validator;
 
 import java.util.List;
 
-import com.foodforus.form.Form;
+import com.foodrus.form.Form;
 
 public interface Validator {
 	/**

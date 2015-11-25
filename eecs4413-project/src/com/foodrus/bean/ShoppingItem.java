@@ -1,4 +1,4 @@
-package com.foodforus.bean;
+package com.foodrus.bean;
 
 public class ShoppingItem implements java.io.Serializable {
 	// *** Serial Number

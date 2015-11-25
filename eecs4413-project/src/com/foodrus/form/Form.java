@@ -1,4 +1,4 @@
-package com.foodforus.form;
+package com.foodrus.form;
 
 /**
  * This interface encapsulate all forms bean.
