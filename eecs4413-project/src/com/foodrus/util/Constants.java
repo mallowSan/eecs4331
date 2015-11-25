@@ -1,5 +1,6 @@
 package com.foodrus.util;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,7 +42,7 @@ public class Constants {
 		public static final String ADD_ITEM = "/additem";
 		public static final String REMOVE_ITEM = "/removeitem";
 		public static final String CHECK_OUT = "/checkout";
-		public static final Map<String, Controller> RESOURCE_MAP = new HashMap<>();
+		public static final Map<String, Controller> RESOURCE_MAP = Collections.unmodifiableMap(new HashMap<>());
 		static{
 			RESOURCE_MAP.put(LOGIN, new LoginController());
 			RESOURCE_MAP.put(HOME, new HomeController());
