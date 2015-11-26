@@ -12,28 +12,9 @@
       href="${pageContext.servletContext.contextPath}/test/img/logo-small.png" />
     <title>Food R Us</title>
   </head>
-<body>
-  <div class="center">
-
-    <div class="header">
-      <!-- Logo image -->
-      <div class="inline" style="margin:10px">
-        <h2>Food For Us</h2>
-      </div>
-      <!-- navBar -->
-      <div >
-        <ul>
-          <li><a href="">Home</a></li>
-          <li><a href="action/addItem">Add Item</a></li>
-          <li><a href="action/removeItem">Remove Item</a></li>
-          <li><a href="action/login">Login</a></li>
-        </ul>
-      </div>
+  <body>
+    <div class="center">
+      <a href="action/login"> Login </a>
     </div>
-  </div>
-    <form action="action/login" method="post">
-      <input type="submit" name="submit" value="submit" /> 
-      <input type="text"name="name"  value="name" />
-    </form>
- </body>
+  </body>
 </html>

@@ -12,7 +12,7 @@ public class AddItemController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request,
 			HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 }

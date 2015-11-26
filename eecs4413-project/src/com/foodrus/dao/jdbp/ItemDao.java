@@ -1,0 +1,64 @@
+package com.foodrus.dao.jdbp;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.naming.NamingException;
+
+import com.foodrus.bean.Item;
+import com.foodrus.dao.RowMapper;
+import com.foodrus.util.DaoHelper;
+
+
+public class ItemDao extends GenericDaoJdbc<Item> {
+	// *** fields used by this DAO
+	public static final String SELECT_ITEM_BY_ID = "select * from item where id = ?";
+	public static final String SELECT_ALL_ITEMS = "select * from item";
+	public static final RowMapper<Item> ITEM_ROW_MAPPER = new RowMapper<Item>(){
+		@Override
+		public Item mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
+			Item item = new Item();
+			item.setCatId(resultSet.getInt("CaId"));
+			item.setCostPrice(resultSet.getDouble("CostPrice"));
+			item.setName(resultSet.getString("name"));
+			item.setNumber(resultSet.getString("number"));
+			item.setOnOrder(resultSet.getInt("OnOrder"));
+			item.setPrice(resultSet.getDouble("price"));
+			item.setQty(resultSet.getInt("qty"));
+			item.setReOrder(resultSet.getInt("reOrder"));
+			item.setSupId(resultSet.getInt("supId"));
+			item.setUnit(resultSet.getString("unit"));
+			return item;
+		}
+	};
+	
+	// *** constructor
+	public ItemDao() throws NamingException {
+		super(Item.class);
+	}
+
+	@Override
+	public Item get(Object... pks) throws SQLException {
+		Connection conn = getDataSource().getConnection();
+		Map<Integer, Object> params = new HashMap<>();
+		if(pks != null){
+			params.put(1, pks[0]);
+		}
+		Item item = (Item) DaoHelper.queryForFirstResult(SELECT_ITEM_BY_ID, params, conn, ITEM_ROW_MAPPER);
+		conn.close();
+		return item;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Item> getAll() throws SQLException {
+		Connection conn = getDataSource().getConnection();
+		List<Item> items = (List<Item>) DaoHelper.queryForList(SELECT_ALL_ITEMS, conn, ITEM_ROW_MAPPER);
+		conn.close();
+		return items;
+	}
+}

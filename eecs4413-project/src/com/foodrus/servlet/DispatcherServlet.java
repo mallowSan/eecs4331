@@ -43,24 +43,29 @@ public class DispatcherServlet extends HttpServlet {
     // *** process POST/GET requests
 	private void processRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException{
-		// *** get the requested URI
+		// *** parse the requested resource URI
 		String uri = request.getPathInfo();
 		if( uri == null){
 			uri = request.getRequestURI().substring(request.getContextPath().length());
 		}
 		uri = uri.toLowerCase();
 		System.out.println("Requested URI >>> " + uri);
+		
 		// *** get the Controller for that URI
 		Controller controller = Resource.RESOURCE_MAP.get(uri);
 		if(controller == null){
 			throw new ServletException("No Controller defined for URI ["+uri+"]");
 		}
-		// *** let controller handles the request
-		String target = controller.handleRequest(request, response);
+		
+		// *** let controller handles the request, then check
+		// *** if it returns a View, if it does 
 		// *** make the view of controller as a target attribute
 		// *** and forward the request to the dashBoard page
-		request.setAttribute(ServletAttribute.TARGET, target);
-		request.getRequestDispatcher(ViewPath.DASH_BOARD).forward(request, response);
+		// *** otherwise do nothing.
+		String target = controller.handleRequest(request, response);
+		if(target != null){
+			request.setAttribute(ServletAttribute.TARGET, target);
+			request.getRequestDispatcher(ViewPath.DASH_BOARD).forward(request, response);
+		}
 	}
-
 }

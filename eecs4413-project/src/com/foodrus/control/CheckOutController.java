@@ -15,7 +15,8 @@ public class CheckOutController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// request.getAttribute(User)
+		
 		return null;
 	}
 

@@ -2,7 +2,7 @@ package com.foodrus.bean;
 
 import java.util.List;
 
-public class ShoppingCart implements java.io.Serializable{
+public class ShoppingCart implements DomainBean{
 	// *** Serial number
 	private static final long serialVersionUID = 7421082833333095713L;
 
