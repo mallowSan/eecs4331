@@ -15,12 +15,6 @@ public class LoginController implements Controller {
 	public String handleRequest(HttpServletRequest request,
 			HttpServletResponse response) {
 		System.out.println(request.getParameter("name"));
-		
-		if(/*login success*/ true){
-			return ViewPath.HOME;
-		} else{
-			
-		return ViewPath.LOGIN;
-		}
+		return ViewPath.HOME;
 	}
 }

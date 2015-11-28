@@ -7,6 +7,7 @@
     		type="javax.sql.DataSource" 
     		name="jdbc/EECS" 
     		url="jdbc:derby://roumani.eecs.yorku.ca:64413/CSE" 
-    		username="student" password="secret"/>
+    		username="student" 
+    		password="secret"/>
     <ResourceLink type="javax.sql.DataSource" name="jdbc/EECS" global="jdbc/EECS"/>         
 </Context>

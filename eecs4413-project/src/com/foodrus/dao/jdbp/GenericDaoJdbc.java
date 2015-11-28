@@ -18,6 +18,16 @@ public abstract class GenericDaoJdbc<T extends DomainBean> implements GenericDao
 		dataSource = InitialContext.doLookup(DAO.JNDI_NAME);
 	}
 
+	/**
+	 * define a constructor with injected DataSource
+	 * @param clazz
+	 * @param dataSource
+	 */
+	public GenericDaoJdbc(Class<T> clazz, DataSource dataSource) {
+		this.clazz = clazz;
+		this.dataSource = dataSource;
+	}
+
 	public Class<T> getClazz() {
 		return clazz;
 	}

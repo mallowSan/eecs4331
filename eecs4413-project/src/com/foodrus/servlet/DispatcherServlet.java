@@ -11,12 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 import com.foodrus.control.Controller;
 import com.foodrus.util.Constants.Resource;
 import com.foodrus.util.Constants.ServletAttribute;
+import com.foodrus.util.Constants.Url;
 import com.foodrus.util.Constants.ViewPath;
 
 /**
- * Servlet implementation class RequestDispatcher
+ * Dispatcher Servlet acts as the dispatcher of requests,
+ * based on the requested URI, as follow:
+ * <ul>
+ * 	<li> <p>if no controller was found to handle the resource, then 
+ *          the request is forwarded to the Home view.
+ *  </li>    
+ *  <li> <p>if controller exist then forward request to the view
+ *          that the controller returned (if any).
+ *          if the controller returns <code>null</code> then do nothing.
+ * @author Uthman
  */
-@WebServlet(urlPatterns={"/home/*", "/Home/*", "/Action/*", "/action/*"})
+@WebServlet(urlPatterns={"/action/*", "/Action/*"})
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -44,28 +54,26 @@ public class DispatcherServlet extends HttpServlet {
 	private void processRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException{
 		// *** parse the requested resource URI
-		String uri = request.getPathInfo();
-		if( uri == null){
-			uri = request.getRequestURI().substring(request.getContextPath().length());
-		}
-		uri = uri.toLowerCase();
+		String uri = this.parseResources(request.getRequestURL().toString());
 		System.out.println("Requested URI >>> " + uri);
-		
-		// *** get the Controller for that URI
+		// *** get the Controller for that resource
 		Controller controller = Resource.RESOURCE_MAP.get(uri);
-		if(controller == null){
-			throw new ServletException("No Controller defined for URI ["+uri+"]");
-		}
-		
-		// *** let controller handles the request, then check
-		// *** if it returns a View, if it does 
-		// *** make the view of controller as a target attribute
-		// *** and forward the request to the dashBoard page
-		// *** otherwise do nothing.
-		String target = controller.handleRequest(request, response);
+		String target = (controller != null) ? controller.handleRequest(request, response) : ViewPath.HOME;
 		if(target != null){
 			request.setAttribute(ServletAttribute.TARGET, target);
 			request.getRequestDispatcher(ViewPath.DASH_BOARD).forward(request, response);
+		} else {
+			System.out.println("Controller ["+controller.getClass().getName()+"] returned [null] as View");
 		}
+	}
+
+	// *** helper method that parse the requested resource from the requested URI
+	private String parseResources(String uri) {
+		String resource = null;
+		if(uri != null){
+			int lastIndex = uri.lastIndexOf(Url.SEPARATOR) + 1;
+			resource = uri.substring(lastIndex).toLowerCase();
+		}
+		return resource;
 	}
 }
